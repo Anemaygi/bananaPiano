@@ -24,24 +24,27 @@ void setup() {
 
 void loop() {
 
-  Serial.println(analogRead(rePin)); // Caso queira ler algum valor no monitor serial para saber qual é o valor de tolerância
-
-  // Mude o valor de tolerância. Para definir qual valor é o melhor, veja o valor da variável no monitor serial para ver em quais valores ele fica acima quando você está encostando
+  String texto = String(analogRead(doPin))+" "+String(analogRead(rePin))+" "+String(analogRead(miPin))+" "+String(analogRead(faPin))+" "+String(analogRead(solPin));
+  Serial.println(texto); // Caso queira ler algum valor no monitor serial para saber qual é o valor de tolerância
   
-  if(analogRead(doPin) > 20){ // Se o pino analógico do Dó for maior que o valor de tolerância
+  if(analogRead(doPin) > 130){ // Se o pino analógico do Dó for maior que o valor de tolerância
     tone(buzzer,262,200); // Tocar a nota dó no buzzer
    }
-  if(analogRead(rePin) > 2){
+  
+  else if(analogRead(rePin) > 130){
     tone(buzzer,294,300);
    }
-   if(analogRead(miPin) > 20){
+  
+  else if(analogRead(miPin) > 130){
     tone(buzzer,330,300);
    }
-  if(analogRead(faPin) > 2){
-    tone(buzzer,394,300);
+  
+  else if(analogRead(faPin) > 130){
+    tone(buzzer,349,300);
    }
-  if(analogRead(solPin) > 2){
+  
+  else if(analogRead(solPin) > 100){
     tone(buzzer,392,200);
    }
-   
+   delay(100);   
 }
